@@ -51,6 +51,16 @@ npm run dev
 
 Health check: `GET http://localhost:8080/health`
 
+Migrations use [goose](https://github.com/pressly/goose), installed globally:
+
+```bash
+go install github.com/pressly/goose/v3/cmd/goose@latest
+```
+
+## Known issues
+
+- `npm audit` reports 7 moderate vulnerabilities in `minimatch` (GHSA-g3hv-75wg-m249), pulled by `typescript-eslint@8.72.2` via `eslint-config-next`. It only affects linting (dev tooling), not the production build. Waiting for an upstream `typescript-eslint` release that supports `minimatch@11`.
+
 ## License
 
 [MIT](LICENSE)
