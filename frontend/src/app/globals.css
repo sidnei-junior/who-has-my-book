@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/*
+ * "Epic terminal" theme: pure black, neon green, classic serif headings
+ * and monospace body text.
+ */
+:root {
+  --background: #000000;
+  --foreground: #c8ffc0;
+  --neon: #39ff14;
+  --neon-dim: #1f8f0b;
+  --muted: #5f7f5a;
+  --border: #143d0c;
+  --danger: #ff3b3b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-neon: var(--neon);
+  --color-neon-dim: var(--neon-dim);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-danger: var(--danger);
+  --font-serif: var(--font-cormorant);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--neon);
+  color: var(--background);
+}
+
+@layer utilities {
+  /* Subtle neon glow for text */
+  .text-glow {
+    text-shadow:
+      0 0 6px rgb(57 255 20 / 0.55),
+      0 0 18px rgb(57 255 20 / 0.25);
+  }
+
+  /* Epic serif heading: uppercase, wide tracking */
+  .heading-epic {
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 500;
+  }
+
+  /* Blinking terminal cursor */
+  .cursor-blink::after {
+    content: "_";
+    margin-left: 0.15em;
+    color: var(--neon);
+    animation: blink 1.1s steps(1) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink::after {
+    animation: none;
+  }
+}
